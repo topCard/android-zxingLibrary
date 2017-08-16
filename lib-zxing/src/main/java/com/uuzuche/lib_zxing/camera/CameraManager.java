@@ -117,7 +117,7 @@ public final class CameraManager {
      */
     public void openDriver(SurfaceHolder holder) throws IOException {
         if (camera == null) {
-            camera = Camera.open();
+            camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_FRONT);
             if (camera == null) {
                 throw new IOException();
             }
