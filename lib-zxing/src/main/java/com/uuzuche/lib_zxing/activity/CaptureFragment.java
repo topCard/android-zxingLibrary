@@ -47,6 +47,16 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
     private SurfaceHolder surfaceHolder;
     private CodeUtils.AnalyzeCallback analyzeCallback;
     private Camera camera;
+    private int useCamera = -1;
+
+
+    public CaptureFragment(){
+
+    }
+
+    public CaptureFragment(int useCamera) {
+        this.useCamera = useCamera;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -144,7 +154,7 @@ public class CaptureFragment extends Fragment implements SurfaceHolder.Callback 
 
     private void initCamera(SurfaceHolder surfaceHolder) {
         try {
-            CameraManager.get().openDriver(surfaceHolder);
+            CameraManager.get().openDriver(surfaceHolder,useCamera);
             camera = CameraManager.get().getCamera();
         } catch (Exception e) {
             if (callBack != null) {
